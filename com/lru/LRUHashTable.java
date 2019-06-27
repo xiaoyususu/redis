@@ -42,10 +42,12 @@ public class LRUHashTable{
             nodeCache.key = key;
             nodeCache.value = value;
             moveToHead(nodeCache);
+            hashtable.put(key,nodeCache);
             currentLength++;
 
         } else {
             moveToHead(nodeCache);
+            hashtable.put(key,nodeCache);
         }
     }
 

@@ -44,14 +44,16 @@ public class LRUTest {
         lruCache.put("3","3");
         lruCache.put("4","4");
         lruCache.put("5","5");
+        lruCache.put("5","6");
 
-        System.out.println(lruCache.get("2"));
+        System.out.println(lruCache.get("1"));
 
         NodeCache nodeCache = lruCache.head;
         while (nodeCache!=null){
             System.out.println(nodeCache.value);
             nodeCache = nodeCache.next;
         }
+
 
     }
 }
