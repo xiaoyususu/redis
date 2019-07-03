@@ -1,5 +1,6 @@
 package lru;
 
+import java.util.HashMap;
 import java.util.Hashtable;
 
 /**
@@ -54,6 +55,10 @@ public class LRUTest {
             nodeCache = nodeCache.next;
         }
 
-
+        HashMap hashMap = new HashMap(1);
+        hashMap.put("1","1");
+        hashMap.put("2","2");
+        System.out.println(hashMap.get("1"));
+        System.out.println(hashMap.get("2"));
     }
 }

@@ -39,16 +39,13 @@ public class LRUHashTable{
                 delTail();
             }
             nodeCache = new NodeCache();
-            nodeCache.key = key;
-            nodeCache.value = value;
-            moveToHead(nodeCache);
-            hashtable.put(key,nodeCache);
             currentLength++;
-
-        } else {
-            moveToHead(nodeCache);
-            hashtable.put(key,nodeCache);
         }
+        nodeCache.key = key;
+        nodeCache.value = value;
+        hashtable.put(key,nodeCache);
+        moveToHead(nodeCache);
+
     }
 
     /*
