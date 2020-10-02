@@ -8,7 +8,7 @@ import java.util.Hashtable;
  * @Author boy
  * @Date 2019/6/22 11:38 AM
  */
-public class LRUHashTable{
+public class LRUHashTable {
     //链表的头结点
     NodeCache head;
     //链表的尾结点
@@ -20,7 +20,7 @@ public class LRUHashTable{
     //实际长度
     int currentLength;
 
-    public LRUHashTable(int length){
+    public LRUHashTable(int length) {
         this.length = length;
         hashtable = new Hashtable(length);
     }
@@ -32,10 +32,10 @@ public class LRUHashTable{
      * @Param [key, value]
      * @return void
      */
-    public void put(Object key,Object value){
+    public void put(Object key, Object value) {
         NodeCache nodeCache = (NodeCache) hashtable.get(key);
-        if (nodeCache == null){
-            if (currentLength>=length){
+        if (nodeCache == null) {
+            if (currentLength >= length) {
                 delTail();
             }
             nodeCache = new NodeCache();
@@ -43,7 +43,7 @@ public class LRUHashTable{
         }
         nodeCache.key = key;
         nodeCache.value = value;
-        hashtable.put(key,nodeCache);
+        hashtable.put(key, nodeCache);
         moveToHead(nodeCache);
 
     }
@@ -55,11 +55,11 @@ public class LRUHashTable{
      * @Param [key]
      * @return java.lang.Object
      */
-    public Object get(Object key){
+    public Object get(Object key) {
         NodeCache nodeCache = (NodeCache) hashtable.get(key);
-        if (nodeCache==null){
+        if (nodeCache == null) {
             return null;
-        }else {
+        } else {
             moveToHead(nodeCache);
         }
 
@@ -73,7 +73,7 @@ public class LRUHashTable{
      * @Param []
      * @return void
      */
-    public void delTail(){
+    public void delTail() {
         hashtable.remove(tail.key);
         tail = tail.prev;
         tail.next = null;
@@ -87,26 +87,26 @@ public class LRUHashTable{
      * @Param [nodeCache]
      * @return void
      */
-    public void moveToHead(NodeCache nodeCache){
-        if (nodeCache==head){
+    public void moveToHead(NodeCache nodeCache) {
+        if (nodeCache == head) {
             return;
         }
-        if (nodeCache.prev!=null){
+        if (nodeCache.prev != null) {
             nodeCache.prev.next = nodeCache.next;
         }
-        if (nodeCache.next!=null){
+        if (nodeCache.next != null) {
             nodeCache.next.prev = nodeCache.prev;
         }
-        if (nodeCache == tail){
+        if (nodeCache == tail) {
             tail = nodeCache.prev;
         }
-        if (head!=null) {
+        if (head != null) {
             head.prev = nodeCache;
             nodeCache.next = head;
             nodeCache.prev = null;
         }
         head = nodeCache;
-        if (tail==null){
+        if (tail == null) {
             tail = head;
         }
 
@@ -117,8 +117,8 @@ public class LRUHashTable{
  * @Author boy
  * @Description 链表节点
  * @Date 2019/6/24 6:05 PM
- * @Param 
- * @return 
+ * @Param
+ * @return
  */
 class NodeCache {
     //键

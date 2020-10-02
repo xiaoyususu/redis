@@ -6,7 +6,7 @@ package lru;
  * @Author boy
  * @Date 2019/6/20 8:19 PM
  */
-public class LRU{
+public class LRU {
     //链表的头结点
     Node head;
     //链表的尾结点
@@ -14,19 +14,19 @@ public class LRU{
     //长度
     int length;
 
-    public LRU(int length){
+    public LRU(int length) {
         this.length = length;
     }
 
-    public void addNode(String value){
+    public void addNode(String value) {
         Node node = new Node();
         node.value = value;
-        if (null == head){
+        if (null == head) {
             head = node;
             tail = node;
             return;
         }
-        if (length<=size()){
+        if (length <= size()) {
             delTailNode();
         }
         head.prev = node;
@@ -35,10 +35,10 @@ public class LRU{
 
     }
 
-    public Node getNode(String value){
+    public Node getNode(String value) {
         Node node = head;
-        while (node!=null){
-            if (value.equals(node.value)){
+        while (node != null) {
+            if (value.equals(node.value)) {
                 Node preNode = node.prev;
                 preNode.next = node.next;
                 node.next.prev = preNode;
@@ -46,36 +46,36 @@ public class LRU{
                 head.prev = node;
                 head = node;
                 break;
-            }else {
+            } else {
                 node = node.next;
             }
         }
         return node;
     }
 
-    public void delTailNode(){
+    public void delTailNode() {
         tail = tail.prev;
         tail.next = null;
     }
 
-    public void delNode(String value){
+    public void delNode(String value) {
         Node node = head;
-        while (node!=null){
-            if (value.equals(node.value)){
+        while (node != null) {
+            if (value.equals(node.value)) {
                 Node comNode = node.prev;
                 comNode.next = node.next;
                 node.next.prev = comNode;
                 break;
-            }else {
+            } else {
                 node = node.next;
             }
         }
     }
 
-    public int size(){
-       int length = 0;
+    public int size() {
+        int length = 0;
         Node node = head;
-        while (node!=null){
+        while (node != null) {
             length++;
             node = node.next;
         }
@@ -83,7 +83,7 @@ public class LRU{
     }
 }
 
-class Node{
+class Node {
     //节点值
     String value;
     //指向上一个节点的引用

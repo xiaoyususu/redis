@@ -28,7 +28,7 @@ public class Snowflake {
     private final static long referenceTime = 1514736000000l;
 
     //自增序列最大值
-    private final static int sequenceMax = -1^(-1<<12);
+    private final static int sequenceMax = -1 ^ (-1 << 12);
 
     //自增序列
     private static int sequence = 0;
@@ -43,10 +43,10 @@ public class Snowflake {
      * @Param [fleetCode, machineCode]
      * @return long
      */
-    public static synchronized long getNextId(int fleetCode,int machineCode){
+    public static synchronized long getNextId(int fleetCode, int machineCode) {
         long currentTimeStamp = getCurrentTimeStamp();
-        if (lastTimeStamp==currentTimeStamp){
-            if (sequence>=sequenceMax){
+        if (lastTimeStamp == currentTimeStamp) {
+            if (sequence >= sequenceMax) {
                 currentTimeStamp = getNextTimeStamp();
                 lastTimeStamp = currentTimeStamp;
                 sequence = 1;
@@ -54,15 +54,15 @@ public class Snowflake {
                 sequence++;
             }
 
-        } else if (lastTimeStamp<currentTimeStamp){
+        } else if (lastTimeStamp < currentTimeStamp) {
             sequence = 1;
             lastTimeStamp = currentTimeStamp;
-        } else if (lastTimeStamp>currentTimeStamp){
+        } else if (lastTimeStamp > currentTimeStamp) {
             System.out.println("error");
         }
-        long id = (currentTimeStamp-referenceTime)<<timeDisplacement |
-                fleetCode<<fleetDisplacement |
-                machineCode<<machineDisplacement |
+        long id = (currentTimeStamp - referenceTime) << timeDisplacement |
+                fleetCode << fleetDisplacement |
+                machineCode << machineDisplacement |
                 sequence;
 
         return id;
@@ -76,7 +76,7 @@ public class Snowflake {
      * @Param []
      * @return long
      */
-    private static long getCurrentTimeStamp(){
+    private static long getCurrentTimeStamp() {
         return System.currentTimeMillis();
     }
 
@@ -87,9 +87,9 @@ public class Snowflake {
      * @Param []
      * @return long
      */
-    private static long getNextTimeStamp(){
+    private static long getNextTimeStamp() {
         long timeStamp = getCurrentTimeStamp();
-        while (timeStamp<=lastTimeStamp){
+        while (timeStamp <= lastTimeStamp) {
             timeStamp = getCurrentTimeStamp();
         }
         return timeStamp;

@@ -4,7 +4,7 @@ import java.util.Hashtable;
 
 /**
  * @ClassName LRUCache
- * @Description TODO
+ * @Description 链表+HashTable实现LRU算法
  * @Author boy
  * @Date 2019/6/21 8:50 PM
  */
@@ -23,6 +23,7 @@ public class LRUCache {
 
     /**
      * 获取缓存中对象
+     *
      * @param key
      * @return
      */
@@ -38,6 +39,7 @@ public class LRUCache {
 
     /**
      * 添加缓存
+     *
      * @param key
      * @param value
      */
@@ -62,8 +64,10 @@ public class LRUCache {
         moveToHead(node);
         nodes.put(key, node);
     }
+
     /**
      * 将缓存删除
+     *
      * @param key
      * @return
      */
@@ -83,13 +87,15 @@ public class LRUCache {
         }
         return node;
     }
+
     public void clear() {
         first = null;
         last = null;
     }
+
     /**
      * 删除链表尾部节点
-     *  表示 删除最少使用的缓存对象
+     * 表示 删除最少使用的缓存对象
      */
     private void removeLast() {
         //链表尾不为空,则将链表尾指向null. 删除连表尾（删除最少使用的缓存对象）
@@ -104,6 +110,7 @@ public class LRUCache {
 
     /**
      * 移动到链表头，表示这个节点是最新使用过的
+     *
      * @param node
      */
     private void moveToHead(CacheNode node) {
@@ -129,14 +136,15 @@ public class LRUCache {
 
 /**
  * 链表节点
- * @author Administrator
  *
+ * @author Administrator
  */
 class CacheNode {
     CacheNode prev;//前一节点
     CacheNode next;//后一节点
     Object value;//值
     Object key;//键
+
     CacheNode() {
     }
 }

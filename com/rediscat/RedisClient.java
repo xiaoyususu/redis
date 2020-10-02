@@ -10,15 +10,16 @@ import redis.clients.jedis.Jedis;
  */
 public class RedisClient {
 
-    public static void main(String args[]){
-        Jedis jedis = new Jedis("148.70.196.127");
-        String key = "incrNum";
-        jedis.setnx(key,"1");
-
-        long incr = jedis.incr(key);
-
-        System.out.println(incr);
-        System.out.println(jedis.incrBy(key,2));
+    public static void main(String args[]) {
+        Jedis jedis = new Jedis("www.diaosiit.com");
+        System.out.println(jedis.ping());
+//        String key = "incrNum";
+//        jedis.setnx(key, "1");
+//
+//        long incr = jedis.incr(key);
+//
+//        System.out.println(incr);
+//        System.out.println(jedis.incrBy(key, 2));
     }
 
 }

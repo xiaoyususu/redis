@@ -8,17 +8,17 @@ package snowflake;
  */
 public class SnowflakeTest {
 
-    public static void main(String args[]){
+    public static void main(String args[]) {
         long startTime = System.currentTimeMillis();
         System.out.println("startTime---------------------------------------" + startTime);
         long num = 100000000l;
-        for(int i=0;i<num;i++){
-            Snowflake.getNextId(1,2);
+        for (int i = 0; i < num; i++) {
+            Snowflake.getNextId(1, 2);
         }
         long endTime = System.currentTimeMillis();
         System.out.println("endTime---------------------------------------" + endTime);
         long timeQuantum = startTime - endTime;
         System.out.println("(startTime-endTime)---------------------------------------" + timeQuantum);
-        System.out.println("(num/(startTime-endTime))---------------------------------------" + num/timeQuantum);
+        System.out.println("(num/(startTime-endTime))---------------------------------------" + num / timeQuantum);
     }
 }

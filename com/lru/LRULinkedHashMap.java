@@ -9,13 +9,13 @@ import java.util.Map;
  * @Author boy
  * @Date 2019/6/13 10:27 AM
  */
-public class LRULinkedHashMap extends LinkedHashMap{
+public class LRULinkedHashMap extends LinkedHashMap {
 
     //缓存长度
     int length;
 
-    public LRULinkedHashMap(int length){
-        super(length,0.75f,true);
+    public LRULinkedHashMap(int length) {
+        super(length, 0.75f, true);
         this.length = length;
     }
 
@@ -27,7 +27,7 @@ public class LRULinkedHashMap extends LinkedHashMap{
      * @return boolean
      */
     @Override
-    public boolean removeEldestEntry(Map.Entry map){
-        return size()>length;
+    public boolean removeEldestEntry(Map.Entry map) {
+        return size() > length;
     }
 }

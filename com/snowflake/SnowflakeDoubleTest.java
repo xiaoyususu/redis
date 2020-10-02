@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * @ClassName SnowflakeDoubleTest
  * @Description 使用LRU算法验证snowflake算法生成的id是有有重复
- *      生成1亿个id，LRU的深度为1万。每次查询最近的1万个id和新生成的是否会用重复
+ * 生成1亿个id，LRU的深度为1万。每次查询最近的1万个id和新生成的是否会用重复
  * @Author boy
  * @Date 2019/6/13 12:32 PM
  */
@@ -18,15 +18,16 @@ public class SnowflakeDoubleTest {
     private static long num = 100000000l;
     //重复id的数量
     private static int repeatNum = 0;
-    public static void main(String args[]){
+
+    public static void main(String args[]) {
         LRU lru = new LRU(deep);
-        for(int i=0;i<num;i++){
-            long id = Snowflake.getNextId(1,2);
-            if(lru.get(id)!=null){
+        for (int i = 0; i < num; i++) {
+            long id = Snowflake.getNextId(1, 2);
+            if (lru.get(id) != null) {
                 System.out.println(id);
                 repeatNum++;
-            }else {
-                lru.put(id,id);
+            } else {
+                lru.put(id, id);
             }
         }
         System.out.println("重复的id数为：" + repeatNum);
@@ -44,8 +45,8 @@ class LRU extends LinkedHashMap {
     //缓存长度
     int length;
 
-    public LRU(int length){
-        super(length,0.75f,true);
+    public LRU(int length) {
+        super(length, 0.75f, true);
         this.length = length;
     }
 
@@ -57,8 +58,8 @@ class LRU extends LinkedHashMap {
      * @return boolean
      */
     @Override
-    public boolean removeEldestEntry(Map.Entry map){
-        return size()>length;
+    public boolean removeEldestEntry(Map.Entry map) {
+        return size() > length;
     }
 }
 

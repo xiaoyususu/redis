@@ -15,16 +15,17 @@ public class Snawflake {
     static long time = 1514736000000l;
 
 
-    public static synchronized long getId(){
+    public static synchronized long getId() {
         long currentTime = System.currentTimeMillis();
-        seq = getSeq(currentTime,seq);
-        long id = (currentTime-time)<<timeMv|code<<codeMv|seq;
+        seq = getSeq(currentTime, seq);
+        long id = (currentTime - time) << timeMv | code << codeMv | seq;
         return id;
     }
-    public static int getSeq(long currentTime,int seq){
-        if(lastTime==currentTime){
+
+    public static int getSeq(long currentTime, int seq) {
+        if (lastTime == currentTime) {
             seq++;
-        }else if (lastTime<currentTime){
+        } else if (lastTime < currentTime) {
             lastTime = currentTime;
             seq = 0;
         }
